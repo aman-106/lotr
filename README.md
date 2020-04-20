@@ -1,2 +1,0 @@
-# lotr
-Created with CodeSandbox
