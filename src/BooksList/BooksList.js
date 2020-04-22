@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "../AxiosInstance";
 import "./styles.css";
+import Loader from "../Loader";
 
 function getBooksUrl(bookId, chapter = false) {
   let path = "";
@@ -60,13 +61,17 @@ export default function BooksList() {
     <div className="books">
       {/* <div className="books__header">Books</div> */}
       <div className="books__list">
-        {books.map(function(book) {
-          return (
-            <div key={book._id} className="books__list__item">
-              <div>{book.name}</div>
-            </div>
-          );
-        })}
+        {books.length ? (
+          books.map(function(book) {
+            return (
+              <div key={book._id} className="books__list__item">
+                <div>{book.name}</div>
+              </div>
+            );
+          })
+        ) : (
+          <Loader />
+        )}
       </div>
     </div>
   );

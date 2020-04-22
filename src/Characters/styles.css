@@ -47,6 +47,11 @@
   padding: 20px;
 }
 
+.characters .characters__list  .loader{
+  grid-column-start: 1;
+  grid-column-end: 4;
+}
+
 
 .character-quotes__content .quotes {
   quotes: "“""”";

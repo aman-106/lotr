@@ -18,7 +18,8 @@ export const noneQuotes = [];
 export const emptyStr = "";
 
 export function useCharactersInfo() {
-  let [characters, setCharacters] = useState(noneCharacters);
+  const [characters, setCharacters] = useState(noneCharacters);
+  const [loading, setLoading] = useState(true);
   const [quotes, setQuotes] = useState(noneQuotes);
   const [show, setQuotesShow] = useState(null);
   let [searchStr, setSearchStr] = useState(emptyStr);
@@ -39,9 +40,11 @@ export function useCharactersInfo() {
     getCharacters()
       .then(res => {
         setCharacters(res.data.docs);
+        setLoading(false);
       })
       .catch(() => {
         setCharacters(noneCharacters);
+        setLoading(false);
       });
   };
 
@@ -83,6 +86,7 @@ export function useCharactersInfo() {
 
   return [
     charactersfiltered,
+    loading,
     handleSetCharacters,
     quotes,
     handleSelectCharacter,

@@ -2,11 +2,13 @@ import React, { useEffect } from "react";
 import { useCharactersInfo } from "./utils";
 import Modal from "../Modal";
 import { charactersCategory } from "./constants";
+import Loader from "../Loader";
 import "./styles.css";
 
 export default function Characters() {
   const [
     characters,
+    charsLoading,
     handleSetCharacters,
     quotes,
     handleSelectCharacter,
@@ -43,17 +45,21 @@ export default function Characters() {
         </select>
       </div>
       <div className="characters__list">
-        {characters.map(function(character) {
-          return (
-            // <div>
-            <Charactercard
-              key={character._id}
-              character={character}
-              handleSelectCharacter={handleSelectCharacter}
-            />
-            // </div>
-          );
-        })}
+        {charsLoading ? (
+          <Loader />
+        ) : (
+          characters.map(function(character) {
+            return (
+              // <div>
+              <Charactercard
+                key={character._id}
+                character={character}
+                handleSelectCharacter={handleSelectCharacter}
+              />
+              // </div>
+            );
+          })
+        )}
       </div>
       <Modal show={Boolean(show)}>
         <div className="character-quotes">
@@ -117,8 +123,9 @@ function Charactercard({ character, handleSelectCharacter }) {
         {character.gender}
       </div>
       <div className="anchor">
-        {/* <span className="label">gender</span> */}
-        <a href={character.wikiUrl}>{"Visit character wiki"}</a>
+        {character.wikiUrl && (
+          <a href={character.wikiUrl}>{"Visit character wiki"}</a>
+        )}
       </div>
     </div>
   );
