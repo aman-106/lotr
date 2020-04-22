@@ -20,6 +20,12 @@
   text-transform: capitalize;
 }
 
+.characters-card .anchor a{
+  text-decoration: none;
+  color: teal;
+  cursor: pointer;
+}
+
 
 .characters-card:hover {
   box-shadow: 0 8px 16px 0 #f38381;
