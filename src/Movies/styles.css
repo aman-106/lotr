@@ -1,0 +1,14 @@
+.movies select{
+  width: 40%;
+  height: 30px;
+  text-transform: capitalize;
+}
+
+
+.movies .movie{
+  width: 40%;
+  margin: auto;
+  padding: 10px;
+  border-bottom: 1px solid #fed6e3;
+  background-image: linear-gradient(45deg, #a8edea 0%, #fed6e3 100%);
+}

@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import axios from "../AxiosInstance";
+import Loader from "../Loader";
+import "./styles.css";
 
 function getMoviesInfo(movieId, quote = false) {
   let path = "";
@@ -50,13 +52,17 @@ export default function Movies(props) {
         <option value={"budgetInMillions"}>budget In Millions</option>
         <option value={"runtimeInMinutes"}>runtime In Minutes</option>
       </select>
-      {moviesList.map(function(movie) {
-        return (
-          <div className="movie" key={movie._id}>
-            {movie.name}
-          </div>
-        );
-      })}
+      {moviesList.length ? (
+        moviesList.map(function(movie) {
+          return (
+            <div className="movie" key={movie._id}>
+              {movie.name}
+            </div>
+          );
+        })
+      ) : (
+        <Loader />
+      )}
     </div>
   );
 }

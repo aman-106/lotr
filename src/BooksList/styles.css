@@ -1,13 +1,18 @@
 
 .books .books__list{
-  background-color: whitesmoke;
-  font-size: 1.6rem;
+  /* background-color: whitesmoke; */
+  /* font-size: 1.6rem; */
 }
 
 
 .books .books__list .books__list__item{
   padding: 1rem;
   cursor: pointer;
+  width: 40%;
+  margin: auto;
+  padding: 10px;
+  border-bottom: 1px solid #fed6e3;
+  background-image: linear-gradient(45deg, #a8edea 0%, #fed6e3 100%);
 
 }
 

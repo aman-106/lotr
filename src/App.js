@@ -16,9 +16,9 @@ export default function App() {
       <div className="App">
         <AppTabs />
         <Switch>
+          <Route exact path={"/movies"} component={Movies} />
           <Route exact path={"/books"} component={BooksList} />
           <Route exact path={"/characters"} component={Characters} />
-          <Route exact path={"/movies"} component={Movies} />
         </Switch>
       </div>
     </Router>
@@ -34,19 +34,38 @@ function AppTabs() {
   }
 
   useEffect(function() {
-    history.push("/books");
+    history.push("/movies");
   }, []);
 
   return (
-    <div className="tabs" onClick={handleRoute}>
-      <div className="tab" data-value="books">
-        {"Books"}
-      </div>
-      <div className="tab" data-value={"characters"}>
-        {"Characters"}
-      </div>
-      <div className="tab" data-value="movies">
-        {"Movies"}
+    <div>
+      <div className="header">Lord of Rings</div>
+      <div className="tabs" onClick={handleRoute}>
+        <div
+          className={
+            history.location.pathname === "/movies" ? "tab active" : "tab "
+          }
+          data-value="movies"
+        >
+          {"Movies"}
+        </div>
+
+        <div
+          className={
+            history.location.pathname === "/characters" ? "tab active" : "tab "
+          }
+          data-value={"characters"}
+        >
+          {"Characters"}
+        </div>
+        <div
+          className={
+            history.location.pathname === "/books" ? "tab active" : "tab "
+          }
+          data-value="books"
+        >
+          {"Books"}
+        </div>
       </div>
     </div>
   );

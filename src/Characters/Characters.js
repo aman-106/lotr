@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useCharactersInfo } from "./utils";
 import Modal from "../Modal";
+import { charactersCategory } from "./constants";
 import "./styles.css";
 
 export default function Characters() {
@@ -13,11 +14,10 @@ export default function Characters() {
     setQuotesShow,
     searchStr,
     handleSearchByName,
-    gender,
-    selectGender
+    charactersCategoryVal,
+    selectCharactersCategory
   ] = useCharactersInfo();
   useEffect(handleSetCharacters, []);
-
   return (
     <div className="characters">
       <div className="characters__search">
@@ -28,10 +28,18 @@ export default function Characters() {
           placeholder={"Search By Name"}
         />
         <div className="spacer"></div>
-        <select value={gender} onChange={selectGender}>
-          <option value={""}>None</option>
-          <option value={"Female"}>female</option>
-          <option value={"Male"}>male</option>
+        <select
+          value={charactersCategoryVal}
+          onChange={selectCharactersCategory}
+        >
+          <option value={""}>Characters Category</option>
+          {charactersCategory.map(function(category, i) {
+            return (
+              <option key={"key" + i} value={category}>
+                {category}
+              </option>
+            );
+          })}
         </select>
       </div>
       <div className="characters__list">
@@ -47,7 +55,7 @@ export default function Characters() {
           );
         })}
       </div>
-      <Modal show={show}>
+      <Modal show={Boolean(show)}>
         <div className="character-quotes">
           <div
             className="character-quotes__close"
@@ -55,14 +63,23 @@ export default function Characters() {
           >
             X
           </div>
-          <div className="character-quotes__title">{show && show.name}</div>
+          <div className="character-quotes__title">
+            {show && show.name + " Says "}
+          </div>
           <div className="character-quotes__content">
             {quotes.length ? (
-              quotes.map(function(quote) {
-                return <div className="quotes">{quote.dialog}</div>;
+              quotes.map(function(quote, i) {
+                return (
+                  <div key={i} className="quotes">
+                    {quote.dialog}
+                  </div>
+                );
               })
             ) : (
-              <div className="character-quotes__content__none"> None</div>
+              <div className="character-quotes__content__none">
+                {" "}
+                No Quotes Available
+              </div>
             )}
           </div>
         </div>
@@ -70,17 +87,6 @@ export default function Characters() {
     </div>
   );
 }
-
-// birth: "FA 320"
-// death: "FA 510"
-// gender: "Male"
-// hair: "Black"
-// height: "Tall"
-// name: "Maeglin"
-// race: "Elf"
-// realm: ""
-// spouse: "None"
-// wikiUrl: "http://lotr.wikia.com//wiki/Maeglin"
 
 function Charactercard({ character, handleSelectCharacter }) {
   return (
@@ -109,6 +115,10 @@ function Charactercard({ character, handleSelectCharacter }) {
       <div>
         <span className="label">gender</span>
         {character.gender}
+      </div>
+      <div className="anchor">
+        {/* <span className="label">gender</span> */}
+        <a href={character.wikiUrl}>{"Visit character wiki"}</a>
       </div>
     </div>
   );

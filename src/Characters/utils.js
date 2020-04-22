@@ -22,11 +22,11 @@ export function useCharactersInfo() {
   const [quotes, setQuotes] = useState(noneQuotes);
   const [show, setQuotesShow] = useState(null);
   let [searchStr, setSearchStr] = useState(emptyStr);
-  const [gender, setGender] = useState(emptyStr);
+  const [charactersCategoryVal, seCharactersCategoryVal] = useState(emptyStr);
 
-  const selectGender = function(event) {
+  const selectCharactersCategory = function(event) {
     const value = event.target.value;
-    setGender(value);
+    seCharactersCategoryVal(value);
   };
   // setSearchStr = debounce(setSearchStr);
 
@@ -61,25 +61,28 @@ export function useCharactersInfo() {
   };
 
   // filters by name characters
-  characters = useMemo(
+  const charactersfiltered = useMemo(
     function() {
       return characters.filter(character => {
-        if (gender && !searchStr) {
-          return character.gender === gender;
-        } else if (searchStr && !gender) {
+        if (charactersCategoryVal && !searchStr) {
+          return character.race === charactersCategoryVal;
+        } else if (searchStr && !charactersCategoryVal) {
           return character.name.includes(searchStr);
-        } else {
+        } else if (searchStr && charactersCategoryVal) {
           return (
-            character.gender === gender && character.name.includes(searchStr)
+            character.race === charactersCategoryVal &&
+            character.name.includes(searchStr)
           );
+        } else {
+          return character;
         }
       });
     },
-    [characters, searchStr, gender]
+    [characters, searchStr, charactersCategoryVal]
   );
 
   return [
-    characters,
+    charactersfiltered,
     handleSetCharacters,
     quotes,
     handleSelectCharacter,
@@ -87,8 +90,8 @@ export function useCharactersInfo() {
     setQuotesShow,
     searchStr,
     handleSearchByName,
-    gender,
-    selectGender
+    charactersCategoryVal,
+    selectCharactersCategory
   ];
 }
 

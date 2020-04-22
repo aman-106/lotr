@@ -48,14 +48,14 @@ function useBooks() {
 
   function getChapterDetails(id) {
     let path = `/chapter/${id}`;
-    axios.get(path).then(res => console.log(res));
+    // axios.get(path).then(res => console.log(res));
   }
 
   return [books, chapters, getChapters, getChapterDetails];
 }
 
 export default function BooksList() {
-  const [books, chapters, getChapters] = useBooks();
+  const [books] = useBooks();
   return (
     <div className="books">
       {/* <div className="books__header">Books</div> */}
@@ -63,23 +63,7 @@ export default function BooksList() {
         {books.map(function(book) {
           return (
             <div key={book._id} className="books__list__item">
-              <div
-                onClick={() => {
-                  getChapters(book._id);
-                }}
-              >
-                {book.name}
-              </div>
-              <div className="chapters">
-                {chapters.map(function(chapter, i) {
-                  return (
-                    <div
-                      key={chapter._id}
-                      // onClick={() => getChapterDetails(chapter._id)}
-                    >{`chapters/${i + 1}`}</div>
-                  );
-                })}
-              </div>
+              <div>{book.name}</div>
             </div>
           );
         })}
