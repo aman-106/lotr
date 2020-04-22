@@ -5,6 +5,7 @@ import { charactersCategory } from "./constants";
 import Loader from "../Loader";
 import "./styles.css";
 
+// shows list of Characters with information , options to filter and move to wiki of Characters
 export default function Characters() {
   const [
     characters,
@@ -98,8 +99,10 @@ function Charactercard({ character, handleSelectCharacter }) {
   return (
     <div
       className="characters-card"
-      onClick={() => {
-        handleSelectCharacter(character);
+      onClick={event => {
+        if (event.target.className != "characters-card--url") {
+          handleSelectCharacter(character);
+        }
       }}
     >
       <div>
@@ -124,7 +127,9 @@ function Charactercard({ character, handleSelectCharacter }) {
       </div>
       <div className="anchor">
         {character.wikiUrl && (
-          <a href={character.wikiUrl}>{"Visit character wiki"}</a>
+          <a classname="characters-card--url" href={character.wikiUrl}>
+            {"Visit character wiki"}
+          </a>
         )}
       </div>
     </div>

@@ -6,7 +6,6 @@
   box-shadow: 0 4px 8px 0 #f38381;
   transition: 0.3s;
   padding: 1rem;
-  /* background:linear-gradient(135deg, #fff1c7 0%,#f383818f 100%); */
   background-image: linear-gradient(45deg, #a8edea 0%, #fed6e3 100%);
 
 }
@@ -18,7 +17,7 @@
 .characters-card .anchor{
   grid-column-start:1;
   grid-column-end: 4;
-  pointer-events: none;
+  text-transform: capitalize;
 }
 
 
@@ -94,7 +93,6 @@
   width: 40%;
   justify-content: center;
   padding: 0 20px;
-  /* flex-basis: 40%; */
 }
 
 .characters__search .spacer{

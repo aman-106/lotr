@@ -3,19 +3,9 @@ import axios from "../AxiosInstance";
 import Loader from "../Loader";
 import "./styles.css";
 
-function getMoviesInfo(movieId, quote = false) {
-  let path = "";
-  if (movieId) {
-    path = `/movie/${movieId}`;
-    path += quote ? "/quote" : "";
-  } else {
-    path = "/movie";
-  }
-  return axios.get(path);
-}
 const emptyMoviesList = [];
-
-export default function Movies(props) {
+// show list of movies and sort the movies
+export default function Movies() {
   const [movies, setMovies] = useState(emptyMoviesList);
   const [sortType, setSortType] = useState("");
 
@@ -67,9 +57,13 @@ export default function Movies(props) {
   );
 }
 
-// academyAwardNominations: 7
-// academyAwardWins: 1
-// boxOfficeRevenueInMillions: 2932
-// budgetInMillions: 675
-// name: "The Hobbit Series"
-// runtimeInMinutes: 462
+function getMoviesInfo(movieId, quote = false) {
+  let path = "";
+  if (movieId) {
+    path = `/movie/${movieId}`;
+    path += quote ? "/quote" : "";
+  } else {
+    path = "/movie";
+  }
+  return axios.get(path);
+}
