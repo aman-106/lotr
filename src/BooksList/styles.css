@@ -1,0 +1,17 @@
+
+.books .books__list{
+  background-color: whitesmoke;
+  font-size: 1.6rem;
+}
+
+
+.books .books__list .books__list__item{
+  padding: 1rem;
+  cursor: pointer;
+
+}
+
+.books .books__list .books__list__item:hover{
+  background-color: #e2e2e2;
+
+}

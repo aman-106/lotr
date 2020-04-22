@@ -1,4 +1,44 @@
 .App {
   font-family: sans-serif;
   text-align: center;
+
+
+}
+
+.App > .tabs{
+  display: flex;
+  flex-direction: row;
+}
+
+.App > .tabs  > .tab{
+  background-color: grey;
+   box-shadow: 3px 5px 5px 0px rgba(0,0,0,0.75);
+  padding: 1rem;
+  font-size: 2.4rem;
+  font-weight: 500;
+  color: white;
+}
+
+.App > .tabs  > .tab.active{
+  background-color: black;
+   box-shadow: 3px 5px 5px 0px rgba(0,0,0,0.75);
+  padding: 1rem;
+  font-size: 2.4rem;
+  font-weight: 500;
+  color: white;
+}
+
+input, select {
+  width: 100%;
+  padding: 1.2rem 2rem;
+  margin: 0.8rem 0;
+  display: inline-block;
+  border: 0.1rem solid #ccc;
+  border-radius: 0.4rem;
+  box-sizing: border-box;
+  outline: none;
+}
+
+input.error ,select.error{
+  border: 0.1rem solid red;
 }
